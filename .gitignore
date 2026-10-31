@@ -2,3 +2,6 @@ node_modules/
 dist/
 *.zip
 .DS_Store
+
+# Real captures of personal booking pages and calendars. Never commit.
+test/fixtures/private/
