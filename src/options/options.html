@@ -2,11 +2,31 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>find-my-time</title>
+    <title>find-my-time settings</title>
   </head>
   <body>
     <h1>find-my-time</h1>
-    <p id="status">Unstyled scaffold. The Cadence kit is applied in step 12.</p>
+    <p>Unstyled build. Everything below runs on this device only.</p>
+
+    <h2>Calendar feed (no sign-in)</h2>
+    <p>Paste your calendar's secret address (ICS). In Google Calendar: Settings › your calendar › Integrate calendar › Secret address in iCal format.</p>
+    <p><strong>This link works like a password.</strong> It stays on this device, is never logged, and is shown masked. Don't share it.</p>
+
+    <section id="connect">
+      <input id="ics-url" type="password" size="60" placeholder="https://… or webcal://…" autocomplete="off" />
+      <button id="ics-save">Connect feed</button>
+    </section>
+    <section id="connected" hidden>
+      <p>Connected: <code id="ics-masked"></code></p>
+      <button id="ics-refresh">Refresh now</button>
+      <button id="ics-remove">Remove feed</button>
+    </section>
+    <p id="msg" role="status"></p>
+
+    <h2>Busy times, next 14 days</h2>
+    <p id="fetched"></p>
+    <ul id="busy"></ul>
+
     <script type="module" src="./options.ts"></script>
   </body>
 </html>
