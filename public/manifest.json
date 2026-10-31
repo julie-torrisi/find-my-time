@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "find-my-time",
+  "version": "0.0.1",
+  "description": "See which booking-page times fit your own calendar. Runs fully on your device.",
+  "permissions": ["identity", "storage"],
+  "host_permissions": [
+    "https://www.googleapis.com/*",
+    "https://graph.microsoft.com/*",
+    "https://login.microsoftonline.com/*"
+  ],
+  "optional_host_permissions": ["https://*/*"],
+  "content_scripts": [
+    { "matches": ["https://calendly.com/*"], "js": ["content.js"], "all_frames": true },
+    { "matches": ["https://*.goodtime.io/*"], "js": ["content.js"], "all_frames": true }
+  ],
+  "background": { "service_worker": "background.js", "type": "module" },
+  "options_page": "options/options.html",
+  "action": { "default_popup": "popup/popup.html" }
+}
