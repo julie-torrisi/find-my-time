@@ -91,3 +91,12 @@ describe('formatting', () => {
     expect(fmtRange(9 * 60, 17 * 60)).toBe('9am–5pm');
   });
 });
+
+describe('tight slots', () => {
+  it('lead with the reason they are tight', () => {
+    const settings = { ...defaultSettings(TZ), protectedWeekdays: [5] };
+    const r = rankSlots([slot30('2026-11-06', '2:00pm')], [], settings, { now: NOW });
+    expect(r.kept[0]?.verdict).toBe('tight');
+    expect(r.kept[0]?.primary).toBe('Lands on Friday, which you keep open');
+  });
+});

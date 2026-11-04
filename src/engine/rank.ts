@@ -162,7 +162,11 @@ export function rankSlots(slots: Slot[], busyIn: Interval[], s: Settings, opts: 
       score,
       verdict: score < 0 ? 'tight' : 'fits',
       reasons,
-      primary: (shown[0] ?? reasons[0])?.text ?? 'Fits your calendar',
+      // A tight slot leads with what's wrong with it; others lead with their best reason.
+      primary:
+        (score < 0 ? [...reasons].filter((x) => x.points < 0).sort((a, b) => a.points - b.points)[0]?.text : undefined) ??
+        (shown[0] ?? reasons[0])?.text ??
+        'Fits your calendar',
       secondary: shown[1] && shown[1].points > 0 && score >= 0 ? shown[1].text : undefined,
     });
   }
